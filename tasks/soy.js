@@ -240,18 +240,18 @@ function getFilesValidation(grunt, files, src) {
     }
 }
 
-// default input pattern only applies to the soy task, not the helper or direct compile function itself.
+// default input pattern only applies to the soy task, not direct compile function itself.
 var defaultInputPattern = '**/*.soy';
 
 function getFiles(grunt, src) {
-    var files = grunt.file.expandFiles(src),
+    var files = grunt.file.expand(src),
         validation = getFilesValidation(grunt, files, src);
 
     if (validation.error) {
         grunt.log.error(validation.error);
         return;
     } else if (validation.warn) {
-        var defaultFiles = grunt.file.expandFiles([defaultInputPattern]),
+        var defaultFiles = grunt.file.expand([defaultInputPattern]),
             tryDefault = getFilesValidation(grunt, defaultFiles);
 
         if (!tryDefault.succeeded) {
@@ -292,7 +292,7 @@ function registerGruntTask(grunt) {
         }
 
         // turn their file input patterns into a concrete list of file paths.
-        var files = getFiles(grunt, this.file.src);
+        var files = getFiles(grunt, this.data.src);
 
         if (!files) {
             return;
@@ -304,18 +304,8 @@ function registerGruntTask(grunt) {
     });
 }
 
-function registerGruntHelper(grunt) {
-    grunt.registerHelper('soy', function() {
-        var args = Array.prototype.slice.call(arguments);
-        args.push(grunt.verbose.writeln.bind(grunt.verbose));
-
-        return compile.apply(this, args);
-    });
-}
-
 module.exports = function(grunt) {
     registerGruntTask(grunt);
-    registerGruntHelper(grunt);
 };
 
 module.exports.compile = compile;
