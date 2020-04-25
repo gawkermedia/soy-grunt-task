@@ -18,7 +18,6 @@ var jarName = 'SoyToJsSrcCompiler.jar',
 var defaults = {
     outputPathFormat : path.join(process.cwd(), 'public/{INPUT_DIRECTORY}/{INPUT_FILE_NAME}.js'),
     inputPrefix : '',
-    codeStyle : 'stringbuilder',
     locales : [],
     messageFilePathFormat : undefined,
     shouldGenerateJsdoc : false,
@@ -30,7 +29,6 @@ var defaults = {
     // Options missing from documentation
     cssHandlingScheme : undefined, // 'literal', 'reference', 'goog'
     googMsgsAreExternal : false,
-    isUsingIjData : undefined,
     messagePluginModule : undefined, //full class reference
     pluginModules: [], // array of full class reference strings.
     shouldDeclareTopLevelNamespaces : undefined,
@@ -116,19 +114,9 @@ function compile(inputFiles, options, callback, opt_debugLogger) {
         cmdOptions.push(options.compileTimeGlobalsFile);
     }
 
-    if (options.codeStyle) {
-        cmdOptions.push('--codeStyle');
-        cmdOptions.push(options.codeStyle);
-    }
-
     if (options.cssHandlingScheme) {
         cmdOptions.push('--cssHandlingScheme');
         cmdOptions.push(options.cssHandlingScheme);
-    }
-
-    if (options.isUsingIjData) {
-        cmdOptions.push('--isUsingIjData');
-        cmdOptions.push(true);
     }
 
     if (options.messagePluginModule) {

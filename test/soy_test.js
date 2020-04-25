@@ -113,14 +113,6 @@ exports['soy'] = {
       inputPrefix : 'test/'
     });
   },
-  'helper-codestyle': function(test) {
-    testHelper(test, {
-      outputPathFormat : outputFormat,
-      codeStyle : 'concat'
-    }, 1, function(content) {
-      test.ok(!/StringBuilder/.test(content), "Output doesn't contain soy.StringBuilder.");
-    });
-  },
   'helper-jsdoc': function(test) {
     testHelper(test, {
       outputPathFormat : outputFormat,
@@ -196,8 +188,7 @@ exports['soy'] = {
   },
   'helper-ijdata': function(test) {
     testHelper(test, {
-      outputPathFormat : outputFormat,
-      isUsingIjData : true
+      outputPathFormat : outputFormat
     }, 1, function(content) {
       test.ok(/opt_ijData/.test(content), "opt_ijData was rendered even though no $ij data was referenced.");
     });

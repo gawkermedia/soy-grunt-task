@@ -21,7 +21,6 @@ grunt.initConfig({
 	    	src: [ '**/*.soy' ],
 	    	inputPrefix : '',
 	    	outputPathFormat : 'public/{INPUT_DIRECTORY}/{INPUT_FILE_NAME}.js',
-		    codeStyle : 'stringbuilder',
 		    locales : [],
 		    messageFilePathFormat : undefined,
 		    shouldGenerateJsdoc : false,
@@ -33,7 +32,6 @@ grunt.initConfig({
 		    // Options missing from documentation
 		    cssHandlingScheme : undefined, // 'literal', 'reference', 'goog'
 		    googMsgsAreExternal : false,
-		    isUsingIjData : undefined,
 		    messagePluginModule : undefined, //full class reference
 		    pluginModules: [], // array of full class reference strings.
 		    shouldDeclareTopLevelNamespaces : undefined,
