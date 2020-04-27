@@ -12,7 +12,7 @@ var fs=require('fs'),
 
 var classpathSeparator = /win32/i.test(process.platform) ? ';' : ':'; 
 
-var jarName = 'SoyToJsSrcCompiler.jar',
+var jarName = 'soy-2015-04-10-SoyToJsSrcCompiler.jar',
     jarLocation = path.join(__dirname, '../closure-templates-for-javascript-latest', jarName);
 
 var defaults = {
