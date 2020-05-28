@@ -10,7 +10,7 @@ var fs=require('fs'),
     path = require('path'),
     spawn = require('child_process').spawn;
 
-var classpathSeparator = /win32/i.test(process.platform) ? ';' : ':'; 
+var classpathSeparator = /win32/i.test(process.platform) ? ';' : ':';
 
 var jarName = 'soy-2015-04-10-SoyToJsSrcCompiler.jar',
     jarLocation = path.join(__dirname, '../closure-templates-for-javascript-latest', jarName);
@@ -18,7 +18,6 @@ var jarName = 'soy-2015-04-10-SoyToJsSrcCompiler.jar',
 var defaults = {
     outputPathFormat : path.join(process.cwd(), 'public/{INPUT_DIRECTORY}/{INPUT_FILE_NAME}.js'),
     inputPrefix : '',
-    codeStyle : 'stringbuilder',
     locales : [],
     messageFilePathFormat : undefined,
     shouldGenerateJsdoc : false,
@@ -26,11 +25,10 @@ var defaults = {
     compileTimeGlobalsFile : undefined,
     shouldGenerateGoogMsgDefs : false,
     bidiGlobalDir : 0, //accepts 1 (ltr) or -1 (rtl)
-    
+
     // Options missing from documentation
     cssHandlingScheme : undefined, // 'literal', 'reference', 'goog'
     googMsgsAreExternal : false,
-    isUsingIjData : undefined,
     messagePluginModule : undefined, //full class reference
     pluginModules: [], // array of full class reference strings.
     shouldDeclareTopLevelNamespaces : undefined,
@@ -69,7 +67,7 @@ function compile(inputFiles, options, callback, opt_debugLogger) {
     if (options.inputPrefix) {
         cmdOptions.push('--inputPrefix');
         cmdOptions.push(options.inputPrefix);
-        
+
         // the compiler wants to be given the file paths relative tothe input prefix.
         // we expeect them passed in relative to whatever the grunt default is.
         var resolvedPrefix = path.resolve(options.inputPrefix);
